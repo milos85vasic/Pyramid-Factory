@@ -44,8 +44,7 @@ except KeyError:
         run_as_user(
             account,
             concatenate(
-                # TODO:
-                # python(factory_script)
+                python(factory_script)
             )
         ),
         run_as_user(
