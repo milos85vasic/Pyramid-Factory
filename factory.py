@@ -23,6 +23,11 @@ steps = [
             pip_upgrade(),
             # TODO: Other pyramid related dependencies
             pip("pyramid"),
+            pip("pyramid-debugtoolbar"),
+            pip("pyramid-jinja2"),
+            pip("pyramid-layout"),
+            pip("pyramid-mako"),
+            pip("pyramid-useragent"),
             add_to_group(account, apache_factory_group),
             mkdir(content_dir_path(user_home())),
             chown(account, content_dir_path(user_home())),
