@@ -29,7 +29,6 @@ steps = [
             pip("pyramid-useragent"),
             pip("pyramid-dateutil"),
             pip("pyramid-gettext"),
-            # TODO: Other pyramid related dependencies
             add_to_group(account, apache_factory_group),
             mkdir(content_dir_path(user_home())),
             chown(account, content_dir_path(user_home())),
@@ -38,11 +37,9 @@ steps = [
                 account,
                 concatenate(
                     cd(user_home() + "/" + apache_factory),
-                    # TODO: Mysql
+                    # TODO V2: Mysql
                     # python(mysql_installation_script, account),
-
-                    # TODO:
-                    # python(distribution_script)
+                    python(distribution_script)
                 )
             )
         )
