@@ -27,6 +27,8 @@ steps = [
             pip("pyramid-layout"),
             pip("pyramid-mako"),
             pip("pyramid-useragent"),
+            pip("pyramid-dateutil"),
+            pip("pyramid-gettext"),
             # TODO: Other pyramid related dependencies
             add_to_group(account, apache_factory_group),
             mkdir(content_dir_path(user_home())),
