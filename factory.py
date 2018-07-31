@@ -20,6 +20,7 @@ steps = [
                 "python",
                 "python-pip"
             ),
+            # TODO: VENV.
             pip_upgrade(),
             pip("pyramid"),
             pip("pyramid-debugtoolbar"),
