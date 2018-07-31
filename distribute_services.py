@@ -26,7 +26,32 @@ steps = [
 
 run(steps)
 
+if account in system_configuration:
+    if key_services in system_configuration[account]:
+        if key_services in system_configuration[account][key_services]:
+            for service in system_configuration[account][key_services][key_services]:
+                url = service[key_services_url]
+                repository = None
+                if key_services_repository in service:
+                    repository = service[key_services_repository]
 
+                if repository:
+                    steps = [
+                        git_clone_to_recursive(
+                            repository, content_dir_path(get_home_directory_path(account)) + "/" + url
+                        ),
+                        concatenate(
+                            cd(content_dir_path(get_home_directory_path(account)) + "/" + url),
+                            git_submodule_checkout_each(),
+                        ),
+                        python(
+                            "Toolkit/" + find_service_index_script,
+                            service[key_services_url],
+                            content_dir_path(get_home_directory_path(account)) + "/" + url
+                        )
+                    ]
+
+                    run(steps)
 
 
 
