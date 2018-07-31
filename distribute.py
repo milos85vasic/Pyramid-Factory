@@ -37,29 +37,7 @@ if incrementPortNumber:
 save_system_configuration(system_configuration)
 
 steps = [
-    cd("~"),
-    rm(pyramid_configuration_dir),
-    mkdir(pyramid_configuration_dir),
-    chmod(pyramid_configuration_dir, "755"),
-    concatenate(
-        cd(pyramid_configuration_dir),
-        git_clone_to_recursive(configuration_repo, here),
-        git_submodule_checkout_each(),
-        cd("~")
-    ),
-    python(
-        "Toolkit/" + wipe_script,
-        pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
-        pyramid_configuration_dir + "/" + pyramid_configuration,
-        # httpd_conf_matrix_home_dir_placeholder, home,
-        # httpd_conf_matrix_port_placeholder, str(system_configuration[account][key_configuration_port]),
-        # httpd_conf_matrix_user_placeholder, account,
-        # httpd_conf_matrix_group_placeholder, account,
-        # httpd_conf_matrix_server_name_placeholder, account,
-        # httpd_conf_matrix_server_admin_placeholder, str(system_configuration[account][key_configuration_server_admin]),
-        # httpd_conf_matrix_php_version, str(php_version)
-    ),
-    # python(services_distribution_script),
+    python(services_distribution_script),
     # concatenate(
     #     cd(apache_bin),
     #     start_command,
