@@ -75,8 +75,9 @@ if account in system_configuration:
                             get_home_directory_path(account) + "/" + pyramid_factory + "Toolkit/" + wipe_script,
                             pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
                             pyramid_configuration_dir + "/" + pyramid_configuration,
-                            pyramid_configuration_matrix_egg, "zzz"
+                            pyramid_configuration_matrix_egg, url
 
+                            # TODO: The rest of matrix fields.
                             # httpd_conf_matrix_port_placeholder,
                             # str(system_configuration[account][key_configuration_port]),
                             # httpd_conf_matrix_user_placeholder, account,
@@ -86,10 +87,10 @@ if account in system_configuration:
                             # str(system_configuration[account][key_configuration_server_admin]),
                             # httpd_conf_matrix_php_version, str(php_version)
                         ),
-                        rm(pyramid_configuration_dir)
+                        mv(pyramid_configuration_dir + "/" + pyramid_configuration, here),
+                        rm(pyramid_configuration_dir),
+                        pyramid_setup()
                     )
                 ]
+
                 run(steps)
-
-
-
