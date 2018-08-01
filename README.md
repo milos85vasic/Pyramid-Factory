@@ -6,6 +6,12 @@ Instantiate and distribute configuration for Pyramid based applications.
 
 Tool is developed for and tested with CentOS 7.
 
+# Web setup
+```
+$ curl https://raw.githubusercontent.com/milos85vasic/Apache-Factory-Toolkit/master/websetup.py > websetup.py; \
+python websetup.py Pyramid-Factory
+```
+
 # Hot to use
     
     - Run as Super User by providing name of account to be created. 
