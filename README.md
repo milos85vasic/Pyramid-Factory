@@ -14,12 +14,12 @@ python websetup.py Pyramid-Factory
 
 # Hot to use
     
-    - Run as Super User by providing name of account to be created. 
-    Account will be created and Pyramid based application started for that user.
+- Run as Super User by providing name of account to be created. 
+Account will be created and Pyramid based application started for that user.
     
 Distributing configuration:
 
-    - TBD.
+- TBD.
 
 ## Account add with Apache Factory execution
 
