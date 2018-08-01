@@ -8,7 +8,7 @@ Tool is developed for and tested with CentOS 7.
 
 # Web setup
 ```
-$ curl -H 'Cache-Control: no-cache' https://raw.githubusercontent.com/milos85vasic/Apache-Factory-Toolkit/master/websetup.py > websetup.py; \
+$ curl https://raw.githubusercontent.com/milos85vasic/Apache-Factory-Toolkit/master/websetup.py > websetup.py; \
 python websetup.py Pyramid-Factory
 ```
 
