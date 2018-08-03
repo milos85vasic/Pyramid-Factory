@@ -89,7 +89,8 @@ if account in system_configuration:
                         ),
                         mv(pyramid_configuration_dir + "/" + pyramid_configuration, here),
                         rm(pyramid_configuration_dir),
-                        pyramid_setup()
+                        pyramid_setup(),
+                        echo("Services distribution completed under Python env.: `which python`")
                     )
                 ]
 

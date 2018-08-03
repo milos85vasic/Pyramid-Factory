@@ -21,7 +21,7 @@ steps = [
                 "python-pip"
             ),
             pip_upgrade(),
-            pip("virtualenv"),
+            pip(virtualenv),
             mkdir(venv_dir_path(user_home())),
             chown(account, venv_dir_path(user_home())),
             chgrp(account, venv_dir_path(user_home())),
@@ -36,8 +36,7 @@ steps = [
                 pip("pyramid-mako"),
                 pip("pyramid-useragent"),
                 pip("pyramid-dateutil"),
-                pip("pyramid-gettext"),
-                venv_deactivate()
+                pip("pyramid-gettext")
             ),
             add_to_group(account, apache_factory_group),
             mkdir(content_dir_path(user_home())),
