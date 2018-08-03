@@ -20,8 +20,16 @@ steps = [
                 "python",
                 "python-pip"
             ),
-            # TODO: VENV.
             pip_upgrade(),
+            pip("virtualenv"),
+            mkdir(venv_dir_path(user_home())),
+            chown(account, venv_dir_path(user_home())),
+            chgrp(account, venv_dir_path(user_home())),
+            concatenate(
+                cd(venv_dir_path(user_home())),
+                venv_init(),
+                # TODO: Continue.
+            ),
             pip("pyramid"),
             pip("pyramid-debugtoolbar"),
             pip("pyramid-jinja2"),
