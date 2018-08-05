@@ -49,12 +49,7 @@ except KeyError:
             )
         ),
 
-        run_as_user(
-            account,
-            concatenate(
-                python(factory_script)
-            )
-        ),
+        python(factory_script),
 
         # TODO:
         # run_as_user(

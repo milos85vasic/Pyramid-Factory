@@ -34,22 +34,21 @@ steps = [
             pip("pyramid-layout"),
             pip("pyramid-mako"),
             pip("pyramid-useragent"),
-            pip("pyramid-dateutil"),
-            pip("pyramid-gettext"),
             mkdir(content_dir_path(user_home())),
             chown(account, content_dir_path(user_home())),
             chgrp(account, content_dir_path(user_home()))
         )
-    ),
-    run_as_user(
-        account,
-        concatenate(
-            cd(user_home() + "/" + apache_factory),
-            # TODO V2: Mysql
-            # python(mysql_installation_script, account),
-            python(distribution_script)
-        )
     )
+    # ,
+    # run_as_user(
+    #     account,
+    #     concatenate(
+    #         cd(user_home() + "/" + apache_factory),
+    #         # TODO V2: Mysql
+    #         # python(mysql_installation_script, account),
+    #         python(distribution_script)
+    #     )
+    # )
 ]
 
 run(steps)
