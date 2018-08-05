@@ -44,12 +44,9 @@ steps = [
             mkdir(content_dir_path(user_home())),
             chown(account, content_dir_path(user_home())),
             chgrp(account, content_dir_path(user_home())),
-            cd(user_home() + "/" + apache_factory)
-            # ,
-            # TODO V2: Mysql
-            # python(mysql_installation_script, account),
-
-            # python(distribution_script)
+            cd(user_home() + "/" + pyramid_factory),
+            # TODO V2: python(mysql_installation_script, account),
+            python(distribution_script)
         )
     )
 ]
