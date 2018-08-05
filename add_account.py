@@ -17,11 +17,12 @@ except KeyError:
     steps = [
         run_as_su(
             concatenate(
+                add_to_group(account, apache_factory_group),
                 cd("~"),
                 add_user(account),
                 passwd(account),
                 add_group(apache_factory_group),
-                add_to_group(account, apache_factory_group),
+
                 # chgrp(apache_factory_group, apache_factory_configuration_dir),
                 # cd(get_home_directory_path(account)),
                 # mkdir(pyramid_factory),
