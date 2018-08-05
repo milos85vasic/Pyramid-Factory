@@ -25,32 +25,29 @@ steps = [
             mkdir(venv_dir_path(user_home())),
             chown(account, venv_dir_path(user_home())),
             chgrp(account, venv_dir_path(user_home())),
-            concatenate(
-                cd(venv_dir_path(user_home())),
-                venv_init(),
-                venv_activate(),
-                pip("pyramid"),
-                pip("pyramid-debugtoolbar"),
-                pip("pyramid-jinja2"),
-                pip("pyramid-layout"),
-                pip("pyramid-mako"),
-                pip("pyramid-useragent"),
-                pip("pyramid-dateutil"),
-                pip("pyramid-gettext")
-            ),
-            add_to_group(account, apache_factory_group),
+            cd(venv_dir_path(user_home())),
+            venv_init(),
+            venv_activate(),
+            pip("pyramid"),
+            pip("pyramid-debugtoolbar"),
+            pip("pyramid-jinja2"),
+            pip("pyramid-layout"),
+            pip("pyramid-mako"),
+            pip("pyramid-useragent"),
+            pip("pyramid-dateutil"),
+            pip("pyramid-gettext"),
             mkdir(content_dir_path(user_home())),
             chown(account, content_dir_path(user_home())),
-            chgrp(account, content_dir_path(user_home())),
-            run_as_user(
-                account,
-                concatenate(
-                    cd(user_home() + "/" + apache_factory),
-                    # TODO V2: Mysql
-                    # python(mysql_installation_script, account),
-                    python(distribution_script)
-                )
-            )
+            chgrp(account, content_dir_path(user_home()))
+        )
+    ),
+    run_as_user(
+        account,
+        concatenate(
+            cd(user_home() + "/" + apache_factory),
+            # TODO V2: Mysql
+            # python(mysql_installation_script, account),
+            python(distribution_script)
         )
     )
 ]
