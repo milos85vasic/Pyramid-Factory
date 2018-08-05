@@ -21,10 +21,14 @@ steps = [
                 "python-pip"
             ),
             pip_upgrade(),
-            pip(virtualenv),
+            pip(virtualenv)
+        )
+    ),
+    run_as_user(
+        account,
+        concatenate(
+            cd(user_home()),
             mkdir(venv_dir_path(user_home())),
-            chown(account, venv_dir_path(user_home())),
-            chgrp(account, venv_dir_path(user_home())),
             cd(venv_dir_path(user_home())),
             venv_init(),
             venv_activate(),
@@ -34,21 +38,18 @@ steps = [
             pip("pyramid-layout"),
             pip("pyramid-mako"),
             pip("pyramid-useragent"),
-            mkdir(content_dir_path("/root")),
-            chown(account, content_dir_path("/root")),
-            chgrp(account, content_dir_path("/root"))
+            cd(user_home()),
+            mkdir(content_dir_path(user_home())),
+            chown(account, content_dir_path(user_home())),
+            chgrp(account, content_dir_path(user_home())),
+            cd(user_home() + "/" + apache_factory)
+            # ,
+            # TODO V2: Mysql
+            # python(mysql_installation_script, account),
+
+            # python(distribution_script)
         )
     )
-    # ,
-    # run_as_user(
-    #     account,
-    #     concatenate(
-    #         cd(user_home() + "/" + apache_factory),
-    #         # TODO V2: Mysql
-    #         # python(mysql_installation_script, account),
-    #         python(distribution_script)
-    #     )
-    # )
 ]
 
 run(steps)
