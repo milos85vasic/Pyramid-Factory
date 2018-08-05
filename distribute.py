@@ -35,10 +35,11 @@ if incrementPortNumber:
 save_system_configuration(system_configuration)
 
 steps = [
-    # python(
-    #     services_distribution_script,
-    #     configuration_repository
-    # ),
+    python(
+        services_distribution_script,
+        configuration_repository
+    )
+    # ,
 
 
     # concatenate(
