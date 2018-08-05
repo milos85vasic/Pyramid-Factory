@@ -1,8 +1,10 @@
 import getpass
+import sys
+
 from Toolkit.commands import *
 from configuration import *
 
-account = getpass.getuser()
+account = sys.argv[1]
 
 
 def user_home():
