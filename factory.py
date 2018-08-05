@@ -34,9 +34,9 @@ steps = [
             pip("pyramid-layout"),
             pip("pyramid-mako"),
             pip("pyramid-useragent"),
-            mkdir(content_dir_path(user_home())),
-            chown(account, content_dir_path(user_home())),
-            chgrp(account, content_dir_path(user_home()))
+            mkdir(content_dir_path("/root")),
+            chown(account, content_dir_path("/root")),
+            chgrp(account, content_dir_path("/root"))
         )
     )
     # ,
