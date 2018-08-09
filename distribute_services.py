@@ -65,16 +65,18 @@ if account in system_configuration:
                 print("url: " + url + "\nroot: " + root)
                 steps = [
                     concatenate(
-                        mkdir(root + "/" + pyramid_configuration_dir),
-                        chmod(root + "/" + pyramid_configuration_dir, "755"),
-                        cd(root + "/" + pyramid_configuration_dir),
+                        cd(root),
+                        echo("Entering root: `pwd`"),
+                        mkdir(pyramid_configuration_dir),
+                        chmod(pyramid_configuration_dir, "755"),
+                        cd(pyramid_configuration_dir),
                         git_clone_to_recursive(configuration_repo, here),
                         git_submodule_checkout_each(),
                         cd(root),
                         python(
                             get_home_directory_path(account) + "/" + pyramid_factory + "/Toolkit/" + wipe_script,
-                            pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
-                            pyramid_configuration_dir + "/" + pyramid_configuration,
+                            root + "/" + pyramid_configuration_matrix,
+                            root + "/" + pyramid_configuration,
                             pyramid_configuration_matrix_egg, url
 
                             # TODO: The rest of matrix fields.
