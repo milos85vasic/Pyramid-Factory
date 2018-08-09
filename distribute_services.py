@@ -62,6 +62,7 @@ if account in system_configuration:
             for service in system_configuration[account][key_services][key_services]:
                 url = service[key_services_url]
                 root = service[key_service_root]
+                print("url: " + url + "\nroot: " + root)
                 steps = [
                     concatenate(
                         cd(root),
