@@ -66,10 +66,11 @@ if account in system_configuration:
                 steps = [
                     concatenate(
                         cd(root),
-                        echo("Entering root: `pwd`"),
+                        echo("Entered root: `pwd`"),
                         mkdir(pyramid_configuration_dir),
                         chmod(pyramid_configuration_dir, "755"),
                         cd(pyramid_configuration_dir),
+                        echo("Entered configuration directory: `pwd`"),
                         git_clone_to_recursive(configuration_repo, here),
                         git_submodule_checkout_each(),
                         cd(root),
