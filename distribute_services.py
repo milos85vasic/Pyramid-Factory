@@ -74,6 +74,7 @@ if account in system_configuration:
                         git_clone_to_recursive(configuration_repo, here),
                         git_submodule_checkout_each(),
                         cd(root),
+                        chmod(pyramid_configuration_dir, "755"),
                         python(
                             get_home_directory_path(account) + "/" + pyramid_factory + "/Toolkit/" + wipe_script,
                             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
