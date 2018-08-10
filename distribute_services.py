@@ -91,7 +91,7 @@ if account in system_configuration:
                             # str(system_configuration[account][key_configuration_server_admin]),
                             # httpd_conf_matrix_php_version, str(php_version)
                         ),
-                        mv(pyramid_configuration_dir + "/" + pyramid_configuration, here),
+                        mv(root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration, root),
                         # rm(pyramid_configuration_dir),
                         pyramid_setup("develop"),
                         echo("Services distribution completed under Python env.: `which python`")
