@@ -46,6 +46,8 @@ if account in system_configuration:
                             cd(content_dir_path(get_home_directory_path(account)) + "/" + url),
                             git_submodule_checkout_each(),
                         ),
+                        chown(account, content_dir_path(get_home_directory_path(account)) + "/" + url),
+                        chgrp(account, content_dir_path(get_home_directory_path(account)) + "/" + url),
                         python(
                             "Toolkit/" + find_service_index_script,
                             service[key_services_url],
