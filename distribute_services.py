@@ -95,7 +95,7 @@ if account in system_configuration:
                         ),
                         chmod(pyramid_configuration_dir, "755"),
                         mv(root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration, root),
-                        # rm(pyramid_configuration_dir),
+                        rm(pyramid_configuration_dir),
                         pyramid_setup("develop"),
                         echo("Services distribution completed under Python env.: `which python`")
                     )
