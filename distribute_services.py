@@ -81,17 +81,10 @@ if account in system_configuration:
                             get_home_directory_path(account) + "/" + pyramid_factory + "/Toolkit/" + wipe_script,
                             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
                             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration,
-                            pyramid_configuration_matrix_egg, url  # TODO: Use real egg name.
-
-                            # TODO: The rest of matrix fields.
-                            # httpd_conf_matrix_port_placeholder,
-                            # str(system_configuration[account][key_configuration_port]),
-                            # httpd_conf_matrix_user_placeholder, account,
-                            # httpd_conf_matrix_group_placeholder, account,
-                            # httpd_conf_matrix_server_name_placeholder, account,
-                            # httpd_conf_matrix_server_admin_placeholder,
-                            # str(system_configuration[account][key_configuration_server_admin]),
-                            # httpd_conf_matrix_php_version, str(php_version)
+                            pyramid_configuration_matrix_egg, url.replace("-", "_"),
+                            pyramid_configuration_matrix_port,
+                            str(system_configuration[account][key_configuration_port]),
+                            pyramid_configuration_matrix_qual_name, url.replace("-", "_")
                         ),
                         chmod(pyramid_configuration_dir, "755"),
                         mv(root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration, root),
