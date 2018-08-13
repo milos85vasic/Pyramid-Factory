@@ -41,6 +41,8 @@ steps = [
             pip("pyramid-mako"),
             pip("pyramid-useragent"),
             pip("xmltodict"),
+            pip("requests"),
+            pip("pyga"),
             cd(user_home()),
             mkdir(content_dir_path(user_home())),
             chown(account, content_dir_path(user_home())),
