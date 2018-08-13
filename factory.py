@@ -40,6 +40,7 @@ steps = [
             pip("pyramid-layout"),
             pip("pyramid-mako"),
             pip("pyramid-useragent"),
+            pip("xmltodict"),
             cd(user_home()),
             mkdir(content_dir_path(user_home())),
             chown(account, content_dir_path(user_home())),
