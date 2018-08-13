@@ -75,8 +75,7 @@ if account in system_configuration:
                 setup_py = root + "/setup.py"
                 if os.path.exists(setup_py):
                     import imp
-                    imported = imp.load_source(setup_py)
-                    pyramid_factory_full_name = imported.pyramid_factory_full_name
+                    pyramid_factory_full_name = imp.load_source("pyramid_factory_full_name", setup_py)
 
                     steps = [
                         concatenate(
