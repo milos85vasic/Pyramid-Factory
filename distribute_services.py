@@ -57,14 +57,20 @@ if account in system_configuration:
 
                     run(steps)
 
+start_command = pyramid_start();
 system_configuration = get_system_configuration()
 if account in system_configuration:
+    if key_configuration_port in system_configuration[account]:
+        if system_configuration[account][key_configuration_port] < 1024:
+            start_command = run_as_su(pyramid_start())
+
     if key_services in system_configuration[account]:
         if key_services in system_configuration[account][key_services]:
             for service in system_configuration[account][key_services][key_services]:
                 url = service[key_services_url]
                 root = service[key_service_root]
                 print("url: " + url + "\nroot: " + root)
+
                 steps = [
                     concatenate(
                         cd(root),
@@ -90,7 +96,8 @@ if account in system_configuration:
                         mv(root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration, root),
                         rm(pyramid_configuration_dir),
                         pyramid_setup("develop"),
-                        echo("Services distribution completed under Python env.: `which python`")
+                        echo("Services distribution completed under Python env.: `which python`"),
+                        start_command
                     )
                 ]
 
