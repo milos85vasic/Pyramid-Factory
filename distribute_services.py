@@ -71,37 +71,43 @@ if account in system_configuration:
                 root = service[key_service_root]
                 print("url: " + url + "\nroot: " + root)
 
-                # TODO: Import from root setup.py.
+                import imp
 
-                steps = [
-                    concatenate(
-                        cd(root),
-                        echo("Entered root: `pwd`"),
-                        mkdir(pyramid_configuration_dir),
-                        chmod(pyramid_configuration_dir, "755"),
-                        cd(pyramid_configuration_dir),
-                        echo("Entered configuration directory: `pwd`"),
-                        git_clone_to_recursive(configuration_repo, here),
-                        git_submodule_checkout_each(),
-                        cd(root),
-                        chmod(pyramid_configuration_dir, "755"),
-                        python(
-                            get_home_directory_path(account) + "/" + pyramid_factory + "/Toolkit/" + wipe_script,
-                            root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
-                            root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration,
-                            pyramid_configuration_matrix_egg, url.replace("-", "_"),
-                            pyramid_configuration_matrix_port, str(system_configuration[account]
-                                                                   [key_configuration_port]),
+                pyramid_factory_full_name = imp.load_source('pyramid_factory_full_name', root + "/setup.py")
+                pyramid_factory_full_version = imp.load_source('pyramid_factory_full_version', root + "/setup.py")
 
-                            pyramid_configuration_matrix_qual_name, url.replace("-", "_")
-                        ),
-                        chmod(pyramid_configuration_dir, "755"),
-                        mv(root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration, root),
-                        rm(pyramid_configuration_dir),
-                        pyramid_setup("develop"),
-                        echo("Services distribution completed under Python env.: `which python`"),
-                        start_command
-                    )
-                ]
+                print(">>>> " + pyramid_factory_full_name)
+                print(">>>> " + pyramid_factory_full_version)
 
-                run(steps)
+                # steps = [
+                #     concatenate(
+                #         cd(root),
+                #         echo("Entered root: `pwd`"),
+                #         mkdir(pyramid_configuration_dir),
+                #         chmod(pyramid_configuration_dir, "755"),
+                #         cd(pyramid_configuration_dir),
+                #         echo("Entered configuration directory: `pwd`"),
+                #         git_clone_to_recursive(configuration_repo, here),
+                #         git_submodule_checkout_each(),
+                #         cd(root),
+                #         chmod(pyramid_configuration_dir, "755"),
+                #         python(
+                #             get_home_directory_path(account) + "/" + pyramid_factory + "/Toolkit/" + wipe_script,
+                #             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
+                #             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration,
+                #             pyramid_configuration_matrix_egg, url.replace("-", "_"),
+                #             pyramid_configuration_matrix_port, str(system_configuration[account]
+                #                                                    [key_configuration_port]),
+                #
+                #             pyramid_configuration_matrix_qual_name, url.replace("-", "_")
+                #         ),
+                #         chmod(pyramid_configuration_dir, "755"),
+                #         mv(root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration, root),
+                #         rm(pyramid_configuration_dir),
+                #         pyramid_setup("develop"),
+                #         echo("Services distribution completed under Python env.: `which python`"),
+                #         start_command
+                #     )
+                # ]
+                #
+                # run(steps)
