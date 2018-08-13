@@ -72,10 +72,10 @@ if account in system_configuration:
                 root = service[key_service_root]
                 print("url: " + url + "\nroot: " + root)
 
-                setup_py = root + "/setup.py"
-                if os.path.exists(setup_py):
-                    import imp
-                    pyramid_factory_full_name = imp.load_source("pyramid_factory_full_name", setup_py)
+                config_json = root + "/config.json"
+                if os.path.exists(config_json):
+                    json_config = json.load(open("config.json"))
+                    pyramid_factory_full_name = json_config["pyramid_factory_full_name"]
 
                     steps = [
                         concatenate(
@@ -110,4 +110,4 @@ if account in system_configuration:
 
                     run(steps)
                 else:
-                    print("Setup file deos not exist: " + setup_py)
+                    print("Config JSON doe not exist: " + config_json)
