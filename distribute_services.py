@@ -57,7 +57,7 @@ if account in system_configuration:
 
                     run(steps)
 
-start_command = pyramid_start();
+start_command = pyramid_start()
 system_configuration = get_system_configuration()
 if account in system_configuration:
     if key_configuration_port in system_configuration[account]:
@@ -70,6 +70,8 @@ if account in system_configuration:
                 url = service[key_services_url]
                 root = service[key_service_root]
                 print("url: " + url + "\nroot: " + root)
+
+                # TODO: Import from root setup.py.
 
                 steps = [
                     concatenate(
@@ -88,8 +90,9 @@ if account in system_configuration:
                             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
                             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration,
                             pyramid_configuration_matrix_egg, url.replace("-", "_"),
-                            pyramid_configuration_matrix_port,
-                            str(system_configuration[account][key_configuration_port]),
+                            pyramid_configuration_matrix_port, str(system_configuration[account]
+                                                                   [key_configuration_port]),
+
                             pyramid_configuration_matrix_qual_name, url.replace("-", "_")
                         ),
                         chmod(pyramid_configuration_dir, "755"),
