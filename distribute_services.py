@@ -1,6 +1,7 @@
 import json
 import getpass
 import sys
+import os.path
 
 from Toolkit.commands import *
 from configuration import *
@@ -71,43 +72,43 @@ if account in system_configuration:
                 root = service[key_service_root]
                 print("url: " + url + "\nroot: " + root)
 
-                import imp
+                setup_py = root + "/setup.py"
+                if os.path.exists(setup_py):
+                    import imp
+                    imported = imp.load_source(setup_py)
+                    pyramid_factory_full_name = imported.pyramid_factory_full_name
 
-                pyramid_factory_full_name = imp.load_source('pyramid_factory_full_name', root + "/setup.py")
-                pyramid_factory_full_version = imp.load_source('pyramid_factory_full_version', root + "/setup.py")
+                    steps = [
+                        concatenate(
+                            cd(root),
+                            echo("Entered root: `pwd`"),
+                            mkdir(pyramid_configuration_dir),
+                            chmod(pyramid_configuration_dir, "755"),
+                            cd(pyramid_configuration_dir),
+                            echo("Entered configuration directory: `pwd`"),
+                            git_clone_to_recursive(configuration_repo, here),
+                            git_submodule_checkout_each(),
+                            cd(root),
+                            chmod(pyramid_configuration_dir, "755"),
+                            python(
+                                get_home_directory_path(account) + "/" + pyramid_factory + "/Toolkit/" + wipe_script,
+                                root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
+                                root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration,
+                                pyramid_configuration_matrix_egg, pyramid_factory_full_name.replace("-", "_"),
+                                pyramid_configuration_matrix_port, str(system_configuration[account]
+                                                                       [key_configuration_port]),
 
-                print(">>>> " + pyramid_factory_full_name)
-                print(">>>> " + pyramid_factory_full_version)
+                                pyramid_configuration_matrix_qual_name, pyramid_factory_full_name.replace("-", "_")
+                            ),
+                            chmod(pyramid_configuration_dir, "755"),
+                            mv(root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration, root),
+                            rm(pyramid_configuration_dir),
+                            pyramid_setup("develop"),
+                            echo("Services distribution completed under Python env.: `which python`"),
+                            start_command
+                        )
+                    ]
 
-                # steps = [
-                #     concatenate(
-                #         cd(root),
-                #         echo("Entered root: `pwd`"),
-                #         mkdir(pyramid_configuration_dir),
-                #         chmod(pyramid_configuration_dir, "755"),
-                #         cd(pyramid_configuration_dir),
-                #         echo("Entered configuration directory: `pwd`"),
-                #         git_clone_to_recursive(configuration_repo, here),
-                #         git_submodule_checkout_each(),
-                #         cd(root),
-                #         chmod(pyramid_configuration_dir, "755"),
-                #         python(
-                #             get_home_directory_path(account) + "/" + pyramid_factory + "/Toolkit/" + wipe_script,
-                #             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration_matrix,
-                #             root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration,
-                #             pyramid_configuration_matrix_egg, url.replace("-", "_"),
-                #             pyramid_configuration_matrix_port, str(system_configuration[account]
-                #                                                    [key_configuration_port]),
-                #
-                #             pyramid_configuration_matrix_qual_name, url.replace("-", "_")
-                #         ),
-                #         chmod(pyramid_configuration_dir, "755"),
-                #         mv(root + "/" + pyramid_configuration_dir + "/" + pyramid_configuration, root),
-                #         rm(pyramid_configuration_dir),
-                #         pyramid_setup("develop"),
-                #         echo("Services distribution completed under Python env.: `which python`"),
-                #         start_command
-                #     )
-                # ]
-                #
-                # run(steps)
+                    run(steps)
+                else:
+                    print("Setup file deos not exist: " + setup_py)
