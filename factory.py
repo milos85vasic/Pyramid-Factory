@@ -43,6 +43,7 @@ steps = [
             pip("xmltodict"),
             pip("requests"),
             pip("pyga"),
+            pip("six"),
             cd(user_home()),
             mkdir(content_dir_path(user_home())),
             chown(account, content_dir_path(user_home())),
