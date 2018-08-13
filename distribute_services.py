@@ -74,7 +74,7 @@ if account in system_configuration:
 
                 config_json = root + "/config.json"
                 if os.path.exists(config_json):
-                    json_config = json.load(open("config.json"))
+                    json_config = json.load(open(config_json))
                     pyramid_factory_full_name = json_config["pyramid_factory_full_name"]
 
                     steps = [
