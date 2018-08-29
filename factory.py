@@ -34,6 +34,7 @@ steps = [
             cd(venv_dir_path(user_home())),
             venv_init(),
             venv_activate(),
+            pip("waitress"),
             pip("pyramid"),
             pip("pyramid-debugtoolbar"),
             pip("pyramid-jinja2"),
