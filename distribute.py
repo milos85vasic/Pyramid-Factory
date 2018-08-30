@@ -18,7 +18,7 @@ if account in system_configuration:
             # TODO: We should do this cehck much earlier!
             services = system_configuration[account][key_services][key_services]
             if len(services) > 1:
-                print("No allowed more than one service for Pyramid Factory configuration, we have: " + str(
+                print("Not allowed more than one service for Pyramid Factory configuration, we have: " + str(
                     len(services)))
                 sys.exit(2)
 
