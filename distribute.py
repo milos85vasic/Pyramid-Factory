@@ -15,7 +15,7 @@ incrementPortNumber = True
 if account in system_configuration:
     if key_services in system_configuration[account]:
         if key_services in system_configuration[account][key_services]:
-            # TODO: We should do this cehck much earlier!
+            # TODO: We should do this check much earlier!
             services = system_configuration[account][key_services][key_services]
             if len(services) > 1:
                 print("Not allowed more than one service for Pyramid Factory configuration, we have: " + str(
