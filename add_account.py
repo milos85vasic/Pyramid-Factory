@@ -42,20 +42,17 @@ except KeyError:
                 chmod(get_home_directory_path(account), "750"),
                 cd("~"),
                 cd(pyramid_factory),
-
-                # TODO:
-                # python(starter_init_script),
+                python(starter_init_script),
                 cd("~")
             )
         ),
 
         python(factory_script, account),
 
-        # TODO:
-        # run_as_user(
-        #     account,
-        #     python(main_proxy_script)
-        # )
+        run_as_user(
+            account,
+            python("Toolkit/" + main_proxy_script)
+        )
     ]
 
     run(steps)

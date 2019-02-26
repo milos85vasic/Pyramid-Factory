@@ -13,6 +13,8 @@ pyramid_configuration_matrix_qual_name = "PYRAMID_FACTORY_QUAL_NAME"
 venv_dir_name = "Venv"
 virtualenv = "virtualenv"
 
+starter_init_script = "starter_init.py"
+
 
 def venv_dir_path(home_path):
     return home_path + "/" + venv_dir_name
