@@ -36,7 +36,6 @@ for item in system_configuration.keys():
                         print("Venv: " + venv)
                         steps = [
                             cd(venv),
-                            venv_init(),
                             venv_activate(),
                             start_command
                         ]
