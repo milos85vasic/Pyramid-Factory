@@ -19,7 +19,7 @@ for item in system_configuration.keys():
             if system_configuration[account][key_configuration_port] < 1024:
                 run_as_su_user = True
 
-    print("Run as SU user: " + str(run_as_su_user))
+    print(account + " will run as SU user: " + str(run_as_su_user))
     if key_services in system_configuration[account]:
         if key_services in system_configuration[account][key_services]:
             if key_service_root in system_configuration[account][key_services][key_services]:
