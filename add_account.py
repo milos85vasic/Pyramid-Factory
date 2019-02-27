@@ -40,10 +40,9 @@ except KeyError:
                 chown(account, get_home_directory_path(account)),
                 chgrp(account, get_home_directory_path(account)),
                 chmod(get_home_directory_path(account), "750"),
-                cd("~"),
                 cd(pyramid_factory),
                 python(starter_init_script),
-                cd("~")
+                cd("..")
             )
         ),
 
