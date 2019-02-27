@@ -24,24 +24,25 @@ for item in system_configuration.keys():
         print("-> 1")
         if key_services in system_configuration[account][key_services]:
             print("-> 2")
-            if key_service_root in system_configuration[account][key_services][key_services]:
-                print("-> 3")
-                service_root = system_configuration[account][key_services][key_services][key_service_root]
-                script = service_root + "/" + pyramid_start()
-                print("-> 4")
+            for srvc in system_configuration[account][key_services][key_services]:
+                if key_service_root in srvc:
+                    print("-> 3")
+                    service_root = srvc[key_service_root]
+                    script = service_root + "/" + pyramid_start()
+                    print("-> 4")
 
-                if os.path.isfile(script):
-                    start_command = script
-                    if run_as_su_user:
-                        start_command = run_as_su(start_command)
-                    steps = [start_command]
+                    if os.path.isfile(script):
+                        start_command = script
+                        if run_as_su_user:
+                            start_command = run_as_su(start_command)
+                        steps = [start_command]
 
-                    print("We are about to execute:")
-                    print(script)
-                    run(steps)
-                else:
-                    print("Cannot execute:")
-                    print(script)
+                        print("We are about to execute:")
+                        print(script)
+                        run(steps)
+                    else:
+                        print("Cannot execute:")
+                        print(script)
 
     # if has_feature(account, feature_mysql):
     #     # MySQL 8.0:
