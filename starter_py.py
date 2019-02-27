@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 from Toolkit.mysql_common_5560 import *
+from configuration import venv_dir_path
 
 system_configuration = get_system_configuration()
 
@@ -30,7 +31,15 @@ for item in system_configuration.keys():
                         start_command = script + "/" + pyramid_start()
                         if run_as_su_user:
                             start_command = run_as_su(start_command)
-                        steps = [start_command]
+
+                        venv = venv_dir_path(get_home_directory_path(account))
+                        print("Venv: " + venv)
+                        steps = [
+                            cd(venv),
+                            venv_init(),
+                            venv_activate(),
+                            start_command
+                        ]
 
                         print("We are about to execute:")
                         print(start_command)
