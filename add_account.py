@@ -49,8 +49,7 @@ except KeyError:
 
         python(factory_script, account),
 
-        run_as_user(
-            account,
+        run_as_su(
             python("Toolkit/" + main_proxy_script)
         )
     ]
