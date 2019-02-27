@@ -21,10 +21,14 @@ for item in system_configuration.keys():
 
     print(account + " will run as super user: " + str(run_as_su_user))
     if key_services in system_configuration[account]:
+        print("-> 1")
         if key_services in system_configuration[account][key_services]:
+            print("-> 2")
             if key_service_root in system_configuration[account][key_services][key_services]:
+                print("-> 3")
                 service_root = system_configuration[account][key_services][key_services][key_service_root]
                 script = service_root + "/" + pyramid_start()
+                print("-> 4")
 
                 if os.path.isfile(script):
                     start_command = script
