@@ -31,7 +31,7 @@ for item in system_configuration.keys():
                     script = service_root
                     print("-> 4")
 
-                    if os.path.isfile(script):
+                    if os.path.exists(script):
                         start_command = script + "/" + pyramid_start()
                         if run_as_su_user:
                             start_command = run_as_su(start_command)
@@ -41,7 +41,7 @@ for item in system_configuration.keys():
                         print(script)
                         run(steps)
                     else:
-                        print("Cannot execute:")
+                        print("Cannot access:")
                         print(script)
 
     # if has_feature(account, feature_mysql):
