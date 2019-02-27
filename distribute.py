@@ -44,8 +44,7 @@ steps = [
     python(
         services_distribution_script,
         configuration_repo
-    ),
-    curl("http://localhost:" + str(system_configuration[account][key_configuration_port]))
+    )
 ]
 
 run(steps)
