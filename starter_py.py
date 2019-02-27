@@ -45,7 +45,7 @@ for item in system_configuration.keys():
                         run(steps)
                     else:
                         print("Cannot access:")
-                        print(script)
+                        print(service_root)
 
     # if has_feature(account, feature_mysql):
     #     # MySQL 8.0:
