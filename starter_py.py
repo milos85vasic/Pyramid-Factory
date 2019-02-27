@@ -7,10 +7,10 @@ system_configuration = get_system_configuration()
 
 for item in system_configuration.keys():
     account = item
-    script = get_home_directory_path(account)
-    print("Home directory: " + script)
-    if not os.path.exists(script):
-        print("Home directory does not exist: " + script)
+    service_root = get_home_directory_path(account)
+    print("Home directory: " + service_root)
+    if not os.path.exists(service_root):
+        print("Home directory does not exist: " + service_root)
         continue
 
     run_as_su_user = False
@@ -26,9 +26,8 @@ for item in system_configuration.keys():
             for srvc in system_configuration[account][key_services][key_services]:
                 if key_service_root in srvc:
                     service_root = srvc[key_service_root]
-                    script = service_root
-                    if os.path.exists(script):
-                        start_command = script + "/" + pyramid_start()
+                    if os.path.exists(service_root):
+                        start_command = pyramid_start()
                         if run_as_su_user:
                             start_command = run_as_su(start_command)
 
@@ -37,6 +36,7 @@ for item in system_configuration.keys():
                         steps = [
                             cd(venv),
                             venv_activate(),
+                            cd(service_root),
                             start_command
                         ]
 
