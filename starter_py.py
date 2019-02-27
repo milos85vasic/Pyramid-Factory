@@ -30,17 +30,18 @@ for item in system_configuration.keys():
                             start_command = run_as_su(start_command)
 
                         venv = venv_dir_path(get_home_directory_path(account))
-                        print("Venv: " + venv)
-                        steps = [
-                            cd(venv),
-                            venv_activate(),
-                            cd(service_root),
-                            start_command
-                        ]
+                        if os.path.exists(venv):
+                            print("Venv: " + venv)
+                            steps = [
+                                cd(venv),
+                                venv_activate(),
+                                cd(service_root),
+                                start_command
+                            ]
 
-                        print("We are about to execute:")
-                        print(start_command)
-                        run(steps)
+                            print("We are about to execute:")
+                            print(start_command)
+                            run(steps)
                     else:
                         print("Cannot access:")
                         print(service_root)
