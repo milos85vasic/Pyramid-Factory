@@ -38,7 +38,7 @@ for item in system_configuration.keys():
                         steps = [start_command]
 
                         print("We are about to execute:")
-                        print(script)
+                        print(start_command)
                         run(steps)
                     else:
                         print("Cannot access:")
