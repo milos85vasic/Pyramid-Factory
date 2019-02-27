@@ -8,9 +8,7 @@ system_configuration = get_system_configuration()
 for item in system_configuration.keys():
     account = item
     service_root = get_home_directory_path(account)
-    print("Home directory: " + service_root)
     if not os.path.exists(service_root):
-        print("Home directory does not exist: " + service_root)
         continue
 
     run_as_su_user = False
@@ -20,13 +18,13 @@ for item in system_configuration.keys():
             if system_configuration[account][key_configuration_port] < 1024:
                 run_as_su_user = True
 
-    print(account + " will run as super user: " + str(run_as_su_user))
     if key_services in system_configuration[account]:
         if key_services in system_configuration[account][key_services]:
             for srvc in system_configuration[account][key_services][key_services]:
                 if key_service_root in srvc:
                     service_root = srvc[key_service_root]
                     if os.path.exists(service_root):
+                        print(account + " will run as super user: " + str(run_as_su_user))
                         start_command = pyramid_start()
                         if run_as_su_user:
                             start_command = run_as_su(start_command)
