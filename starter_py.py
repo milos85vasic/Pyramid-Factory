@@ -28,11 +28,11 @@ for item in system_configuration.keys():
                 if key_service_root in srvc:
                     print("-> 3")
                     service_root = srvc[key_service_root]
-                    script = service_root + "/" + pyramid_start()
+                    script = service_root
                     print("-> 4")
 
                     if os.path.isfile(script):
-                        start_command = script
+                        start_command = script + "/" + pyramid_start()
                         if run_as_su_user:
                             start_command = run_as_su(start_command)
                         steps = [start_command]
