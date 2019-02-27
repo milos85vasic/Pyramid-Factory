@@ -24,7 +24,6 @@ for item in system_configuration.keys():
                 if key_service_root in srvc:
                     service_root = srvc[key_service_root]
                     if os.path.exists(service_root):
-                        print(account + " will run as super user: " + str(run_as_su_user))
                         start_command = pyramid_start()
                         if run_as_su_user:
                             start_command = run_as_su(start_command)
@@ -32,11 +31,14 @@ for item in system_configuration.keys():
                         venv = venv_dir_path(get_home_directory_path(account))
                         if os.path.exists(venv):
                             print("Venv: " + venv)
+                            print(account + " will run as super user: " + str(run_as_su_user))
                             steps = [
-                                cd(venv),
-                                venv_activate(),
-                                cd(service_root),
-                                start_command
+                                concatenate(
+                                    cd(venv),
+                                    venv_activate(),
+                                    cd(service_root),
+                                    start_command
+                                )
                             ]
 
                             print("We are about to execute:")
