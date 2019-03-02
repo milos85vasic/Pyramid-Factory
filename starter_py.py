@@ -48,6 +48,7 @@ for item in system_configuration.keys():
                         print("Cannot access:")
                         print(service_root)
 
+    # TODO:
     # if has_feature(account, feature_mysql):
     #     # MySQL 8.0:
     #     # script = get_home_directory_path(account) + "/" + mysql + "/" + mysql_installation_dir + \
