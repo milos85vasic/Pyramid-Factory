@@ -18,6 +18,20 @@ git_configuration = get_git_info()
 system_configuration = init_system_configuration(sys.argv)
 account = get_account()
 
+
+def get_main_proxy(account_to_check):
+    if account_to_check in system_configuration:
+        if key_services in system_configuration[account_to_check]:
+            if key_services in system_configuration[account_to_check][key_services]:
+                for service in system_configuration[account_to_check][key_services][key_services]:
+                    if key_configuration_main_proxy in service:
+                        main_proxy = service[key_configuration_main_proxy]
+                        print("Main proxy: " + main_proxy)
+                        return main_proxy
+    print("No main proxy found for the account: " + account_to_check)
+    return account_to_check
+
+
 try:
     pwd.getpwnam(account)
     print("Account already exists: " + account)
@@ -50,8 +64,8 @@ except KeyError:
         python(factory_script, account),
 
         run_as_user(
-            account,
-            python("Toolkit/" + main_proxy_script)
+            get_main_proxy(account),
+            python("Toolkit/" + main_proxy_script, account)
         )
     ]
 
